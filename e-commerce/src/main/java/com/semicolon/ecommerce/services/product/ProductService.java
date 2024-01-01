@@ -8,5 +8,4 @@ public interface ProductService {
 
     Product findProductByName(String productName);
 
-    Product add(String productName);
 }

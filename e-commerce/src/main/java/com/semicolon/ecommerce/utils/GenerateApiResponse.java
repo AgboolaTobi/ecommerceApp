@@ -10,7 +10,6 @@ public class GenerateApiResponse {
     public static final String SELLER_ACCOUNT_NOT_YET_CREATED = "You do not have an account yet!";
     public static final Object STORE_SUCCESSFULLY_CREATED = "You have successfully created a seller's store ";
     public static final String PRODUCT_SUCCESSFULLY_ADDED = "You have successfully added a product to your store";
-    public static final String PRODUCT_ALREADY_ADDED = "Yo have already added this product";
     public static final String CUSTOMER_REGISTRATION_DETAILS_ALREADY_EXIST = "This registration details is already used. Kindly review your details and try again.";
     public static final String ACCOUNT_NOT_YET_CREATED = "You do not have an account yet. Kindly register to place an order.";
     public static final String PRODUCT_IS_CURRENTLY_UNAVAILABLE = "Product is currently unavailable";
@@ -18,6 +17,10 @@ public class GenerateApiResponse {
     public static final String PRODUCT_IS_CURRENTLY_OUT_OF_STOCK = "Product is currently out of stock. Kindly check back at a later time. Thank you";
     public static final String REQUIRED_QUANTITY_IS_UNAVAILABLE_AT_THE_MOMENT = "Kindly order a lower quantity";
     public static final String SELLER_STORE_NOT_YET_CREATED = "You do not have a seller store";
+    public static final String PRODUCT_ALREADY_EXIST = "Product already exist";
+    public static final String CUSTOMER_DOES_NOT_HAVE_A_CART_YET = "Customer do not have a cart yet";
+    public static final String NO_PRODUCT_IN_CART = "You have not selected any product into your cart";
+    public static final String TOTAL_PRICE_OF_PRODUCT_IN_CART = "The total cost of selected products in cart = ";
 
     public static ApiResponse created(Object data) {
         return ApiResponse.builder()

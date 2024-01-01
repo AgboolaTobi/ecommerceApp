@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
+
 @Entity
 @Getter
 @Setter
@@ -19,4 +20,5 @@ public class Customer {
     private String email;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Cart cart;
+
 }

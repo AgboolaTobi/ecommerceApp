@@ -29,7 +29,7 @@ public class ProductCreationService {
     private final ModelMapper modelMapper;
 
 
-    public ApiResponse createProduct(ProductCreationRequest productCreationRequest) throws SellerException, ProductException, StoreException {
+    public ApiResponse createProduct(ProductCreationRequest productCreationRequest) throws SellerException, StoreException, ProductException {
 
 
         Seller seller =sellerService.findByEmailAddress(productCreationRequest.getSellerEmailAddress());
@@ -39,14 +39,13 @@ public class ProductCreationService {
         Store store = seller.getStore();
         if (store.getStoreName()==null)throw new StoreException(GenerateApiResponse.SELLER_STORE_NOT_YET_CREATED);
 
+
         List<Product> listOfProduct = store.getListOfProducts();
         if(listOfProduct==null){
             listOfProduct = new ArrayList<>();
         }
-
         Product existingProduct = productService.findProductByName(productCreationRequest.getProductName());
-        if(existingProduct!=null) throw new ProductException(GenerateApiResponse.PRODUCT_ALREADY_ADDED);
-
+        if (existingProduct !=null) throw new ProductException(GenerateApiResponse.PRODUCT_ALREADY_EXIST);
 
         Product product = modelMapper.map(productCreationRequest, Product.class);
         product.setProductCategory(ProductCategory.valueOf(productCreationRequest.getProductCategory().toUpperCase()));

@@ -21,10 +21,4 @@ public class ProductServiceImp implements ProductService{
         return productRepository.findByProductName(productName);
     }
 
-    @Override
-    public Product add(String productName) {
-        return productRepository.findByProductName(productName);
-    }
-
-
 }
