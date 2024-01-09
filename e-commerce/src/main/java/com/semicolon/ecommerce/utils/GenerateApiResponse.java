@@ -21,6 +21,7 @@ public class GenerateApiResponse {
     public static final String CUSTOMER_DOES_NOT_HAVE_A_CART_YET = "Customer do not have a cart yet";
     public static final String NO_PRODUCT_IN_CART = "You have not selected any product into your cart";
     public static final String TOTAL_PRICE_OF_PRODUCT_IN_CART = "The total cost of selected products in cart = ";
+    public static final String PRODUCT_SUCCESSFULLY_REMOVED_STORE = "You have successfully removed this product from store";
 
     public static ApiResponse created(Object data) {
         return ApiResponse.builder()
@@ -32,6 +33,15 @@ public class GenerateApiResponse {
     }
 
     public static ApiResponse added(Object data) {
+        return ApiResponse.builder()
+                .data(data)
+                .httpStatus(HttpStatus.OK)
+                .statusCode(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .build();
+    }
+
+    public static ApiResponse removed(Object data) {
         return ApiResponse.builder()
                 .data(data)
                 .httpStatus(HttpStatus.OK)

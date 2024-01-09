@@ -5,12 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
-public class PaymentRequest {
+@AllArgsConstructor
+public class SellerRemoveProductRequest {
 
-    private String customerEmail;
-
+    private String emailAddress;
+    private String productName;
 }

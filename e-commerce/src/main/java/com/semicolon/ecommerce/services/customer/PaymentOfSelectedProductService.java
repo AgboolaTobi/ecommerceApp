@@ -41,7 +41,7 @@ public class PaymentOfSelectedProductService {
             BigDecimal price = eachProduct.getPrice();
 
 
-            var subTotal = (price.multiply(BigDecimal.valueOf(quantity)));
+            BigDecimal subTotal = (price.multiply(BigDecimal.valueOf(quantity)));
 
             totalPriceOfProductInCart = totalPriceOfProductInCart.add(subTotal);
 
