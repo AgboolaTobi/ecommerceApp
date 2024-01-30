@@ -21,11 +21,16 @@ public class StoreCreationService {
     public ApiResponse createStore(StoreCreationRequest storeCreationRequest) throws SellerException {
         Seller seller = sellerService.findByEmailAddress(storeCreationRequest.getSellerEmailAddress());
         if (seller == null) throw new SellerException(GenerateApiResponse.SELLER_ACCOUNT_NOT_YET_CREATED);
-
+        if (seller.isLocked()) throw new SellerException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
+        Store sellerStore = storeService.findByStoreName(storeCreationRequest.getStoreName());
+        if (sellerStore!=null) throw new SellerException(GenerateApiResponse.SELLER_STORE_ALREADY_EXIST);
         Store store = new Store();
 
         store.setStoreName(storeCreationRequest.getStoreName());
+        String password = seller.getPassword();
+        if (!password.equals(storeCreationRequest.getPassword())) throw new SellerException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
         store.setSellerEmailAddress(storeCreationRequest.getSellerEmailAddress());
+
         Store savedStore = storeService.save(store);
 
         seller.setStore(savedStore);

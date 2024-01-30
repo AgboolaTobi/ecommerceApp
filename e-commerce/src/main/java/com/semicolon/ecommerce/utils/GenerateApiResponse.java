@@ -21,7 +21,14 @@ public class GenerateApiResponse {
     public static final String CUSTOMER_DOES_NOT_HAVE_A_CART_YET = "Customer do not have a cart yet";
     public static final String NO_PRODUCT_IN_CART = "You have not selected any product into your cart";
     public static final String TOTAL_PRICE_OF_PRODUCT_IN_CART = "The total cost of selected products in cart = ";
-    public static final String PRODUCT_SUCCESSFULLY_REMOVED_STORE = "You have successfully removed this product from store";
+    public static final String PRODUCT_SUCCESSFULLY_REMOVED_FROM_STORE = "You have successfully removed this product from store";
+    public static final String PRODUCT_YOU_INTEND_TO_REMOVE_IS_NOT_PRESENT_IN_STORE = "The product you intend to remove is not available in store";
+    public static final String SELLER_STORE_ALREADY_EXIST = "Seller store with this store name already exist";
+    public static final String QUANTITY_NOT_AVAILABLE = "The quantity is unavailable";
+    public static final String INVALID_USER_CREDENTIALS = "Invalid user credentials";
+    public static final String CUSTOMER_ACCOUNT_NOT_FOUND = "Customer account not found";
+    public static final String SUCCESSFULLY_LOGGED_IN = "logged in successfully";
+    public static final String USER_NOT_LOGGED_IN = "Kindly log in to continue";
 
     public static ApiResponse created(Object data) {
         return ApiResponse.builder()
@@ -46,6 +53,15 @@ public class GenerateApiResponse {
                 .data(data)
                 .httpStatus(HttpStatus.OK)
                 .statusCode(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .build();
+    }
+
+    public static ApiResponse login(Object data) {
+        return ApiResponse.builder()
+                .data(data)
+                .httpStatus(HttpStatus.FOUND)
+                .statusCode(HttpStatus.CREATED.value())
                 .isSuccessful(true)
                 .build();
     }

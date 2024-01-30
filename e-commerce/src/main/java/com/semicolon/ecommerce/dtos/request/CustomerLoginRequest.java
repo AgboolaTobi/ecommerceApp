@@ -5,14 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+public class CustomerLoginRequest {
 
-public class RegistrationRequest {
-
-    private String sellerName;
-    private String emailAddress;
-    private  String address;
+    private String customerEmailAddress;
+    private String password;
 }

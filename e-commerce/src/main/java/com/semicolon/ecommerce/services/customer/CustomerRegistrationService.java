@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 
-public class CustomerCreationService {
+public class CustomerRegistrationService {
     private  final CustomerService customerService;
     private final CartService cartService;
     private final ModelMapper modelMapper;

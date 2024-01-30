@@ -11,11 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 
 
-
-public class CustomerToAddToCartRequest {
-    private String customerEmail;
-    private String productName;
-    private int quantity;
+public class SellerRegistrationRequest {
+    private String sellerName;
+    private String emailAddress;
+    private  String address;
     private String password;
-
 }

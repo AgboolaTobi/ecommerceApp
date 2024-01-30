@@ -22,31 +22,31 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class ProductCreationService {
+public class SellerCreateProductInStoreService {
     private final SellerService sellerService;
     private final ProductService productService;
     private final StoreService storeService;
     private final ModelMapper modelMapper;
 
 
-    public ApiResponse createProduct(ProductCreationRequest productCreationRequest) throws SellerException, StoreException, ProductException {
+    public ApiResponse createProductInStore(ProductCreationRequest productCreationRequest) throws SellerException, StoreException, ProductException {
 
 
         Seller seller =sellerService.findByEmailAddress(productCreationRequest.getSellerEmailAddress());
         if(seller==null) throw new SellerException(GenerateApiResponse.SELLER_ACCOUNT_NOT_YET_CREATED);
+        if (seller.isLocked()) throw new SellerException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
+        if (!seller.getPassword().equals(productCreationRequest.getPassword())) throw new SellerException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
 
 
         Store store = seller.getStore();
         if (store.getStoreName()==null)throw new StoreException(GenerateApiResponse.SELLER_STORE_NOT_YET_CREATED);
 
-
         List<Product> listOfProduct = store.getListOfProducts();
         if(listOfProduct==null){
             listOfProduct = new ArrayList<>();
         }
-        Product existingProduct = productService.findProductByName(productCreationRequest.getProductName());
-        if (existingProduct !=null) throw new ProductException(GenerateApiResponse.PRODUCT_ALREADY_EXIST);
-
+        String password = seller.getPassword();
+        if (!password.equals(productCreationRequest.getPassword())) throw new StoreException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
         Product product = modelMapper.map(productCreationRequest, Product.class);
         product.setProductCategory(ProductCategory.valueOf(productCreationRequest.getProductCategory().toUpperCase()));
         product.setPrice(BigDecimal.valueOf(productCreationRequest.getPrice()));

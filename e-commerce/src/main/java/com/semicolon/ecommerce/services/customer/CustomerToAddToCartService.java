@@ -28,14 +28,18 @@ public class CustomerToAddToCartService {
     public ApiResponse customerToAddToCart(CustomerToAddToCartRequest customerToAddToCartRequest) throws CustomerException {
 
         Customer customer = customerService.findCustomerByEmail(customerToAddToCartRequest.getCustomerEmail());
+
         if (customer ==null) throw new CustomerException(GenerateApiResponse.ACCOUNT_NOT_YET_CREATED);
+        if (customer.isLocked()) throw new CustomerException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
+        if (!customer.getPassword().equals(customerToAddToCartRequest.getPassword())) throw new CustomerException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
 
         Cart existingCart = customer.getCart();
 
 
         Product inStockProduct = productService.findProductByName(customerToAddToCartRequest.getProductName());
-
+        if (customer.isLocked()) throw new CustomerException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
         if (inStockProduct==null) throw new CustomerException(GenerateApiResponse.PRODUCT_IS_CURRENTLY_UNAVAILABLE);
+
         if (inStockProduct.getQuantity()< 1) throw new CustomerException(GenerateApiResponse.PRODUCT_IS_CURRENTLY_OUT_OF_STOCK);
 
         List<Product> listOfProducts =existingCart.getListOfProducts();
@@ -51,7 +55,9 @@ public class CustomerToAddToCartService {
 
         listOfProducts.add(inStockProduct);
 
-
+        String password = customer.getPassword();
+        if (!password.equals(customerToAddToCartRequest.getPassword())) throw new CustomerException(GenerateApiResponse.INVALID_USER_CREDENTIALS);
+        customer.setLocked(false);
         existingCart.setListOfProducts(new ArrayList<>(listOfProducts));
 
         Cart updatedCart = cartService.save(existingCart);

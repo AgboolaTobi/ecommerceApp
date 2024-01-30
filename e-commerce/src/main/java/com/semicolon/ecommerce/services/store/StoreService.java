@@ -5,4 +5,5 @@ import com.semicolon.ecommerce.data.models.Store;
 public interface StoreService {
     Store save(Store store);
 
+    Store findByStoreName(String storeName);
 }
