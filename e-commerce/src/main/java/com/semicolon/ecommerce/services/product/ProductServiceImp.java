@@ -1,6 +1,7 @@
 package com.semicolon.ecommerce.services.product;
 
 
+import com.semicolon.ecommerce.data.enums.ProductCategory;
 import com.semicolon.ecommerce.data.models.Product;
 import com.semicolon.ecommerce.data.repositories.ProductRepository;
 import lombok.AllArgsConstructor;

@@ -10,9 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+
 public class ProductCreationRequest {
 
     private String sellerEmailAddress;
+    private String password;
     private String productName;
     private int quantity;
     private double price;

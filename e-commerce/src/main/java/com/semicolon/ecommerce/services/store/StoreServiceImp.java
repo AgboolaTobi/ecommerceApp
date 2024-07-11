@@ -17,5 +17,10 @@ public class StoreServiceImp implements StoreService {
         return  storeRepository.save(store);
     }
 
+    @Override
+    public Store findByStoreName(String storeName) {
+        return storeRepository.findByStoreName(storeName);
+    }
+
 
 }

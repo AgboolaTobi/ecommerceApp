@@ -9,13 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-
-
-public class CustomerToAddToCartRequest {
-    private String customerEmail;
-    private String productName;
-    private int quantity;
+public class SellerLoginRequest {
+    private String sellerEmail;
     private String password;
-
 }

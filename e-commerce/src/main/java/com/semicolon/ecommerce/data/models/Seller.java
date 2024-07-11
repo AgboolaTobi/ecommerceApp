@@ -17,6 +17,8 @@ public class Seller {
     private String sellerName;
     private String emailAddress;
     private String address;
+    private String password;
+    boolean isLocked=true;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Store store;
 }
