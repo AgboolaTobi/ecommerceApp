@@ -4,7 +4,6 @@ import com.semicolon.ecommerce.dtos.request.CustomerToAddToCartRequest;
 import com.semicolon.ecommerce.exceptions.CustomerException;
 import com.semicolon.ecommerce.services.customer.CustomerToAddToCartService;
 import com.semicolon.ecommerce.utils.ApiResponse;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ public class CustomerToAddToCartController {
     private final CustomerToAddToCartService customerToAddToCartService;
 
     @PostMapping("addToCart")
-    public ResponseEntity<ApiResponse> addToCart(@RequestBody @Valid CustomerToAddToCartRequest customerToAddToCartRequest) throws CustomerException {
+    public ResponseEntity<ApiResponse> addToCart(@RequestBody  CustomerToAddToCartRequest customerToAddToCartRequest) throws CustomerException {
         return new ResponseEntity<>(customerToAddToCartService.customerToAddToCart(customerToAddToCartRequest), HttpStatus.OK);
     }
 

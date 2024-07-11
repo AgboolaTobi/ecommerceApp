@@ -5,7 +5,7 @@ import com.semicolon.ecommerce.dtos.request.SellerRegistrationRequest;
 import com.semicolon.ecommerce.exceptions.SellerException;
 import com.semicolon.ecommerce.services.seller.SellerRegistrationService;
 import com.semicolon.ecommerce.utils.ApiResponse;
-import jakarta.validation.Valid;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class SellerRegistrationController {
     private final SellerRegistrationService sellerRegistrationService;
 
     @PostMapping("registerSeller")
-    public ResponseEntity<ApiResponse> registerSeller(@RequestBody @Valid SellerRegistrationRequest sellerRegistrationRequest) throws SellerException {
+    public ResponseEntity<ApiResponse> registerSeller(@RequestBody SellerRegistrationRequest sellerRegistrationRequest) throws SellerException {
         return new ResponseEntity<>(sellerRegistrationService.register(sellerRegistrationRequest), HttpStatus.CREATED);
     }
 }

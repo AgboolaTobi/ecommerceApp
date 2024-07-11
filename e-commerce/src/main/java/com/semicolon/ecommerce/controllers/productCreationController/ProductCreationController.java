@@ -7,7 +7,6 @@ import com.semicolon.ecommerce.exceptions.SellerException;
 import com.semicolon.ecommerce.exceptions.StoreException;
 import com.semicolon.ecommerce.services.product.SellerCreateProductInStoreService;
 import com.semicolon.ecommerce.utils.ApiResponse;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ public class ProductCreationController {
 
     @PostMapping("addProductToStore")
 
-    public ResponseEntity<ApiResponse> addProductToStore(@RequestBody @Valid ProductCreationRequest productCreationRequest) throws SellerException, ProductException, StoreException {
+    public ResponseEntity<ApiResponse> addProductToStore(@RequestBody ProductCreationRequest productCreationRequest) throws SellerException, ProductException, StoreException {
 
         return new ResponseEntity<>(sellerCreateProductInStoreService.createProductInStore(productCreationRequest), HttpStatus.CREATED);
     }
