@@ -21,6 +21,6 @@ public class SellerRegistrationController {
 
     @PostMapping("registerSeller")
     public ResponseEntity<ApiResponse> registerSeller(@RequestBody SellerRegistrationRequest sellerRegistrationRequest) throws SellerException {
-        return new ResponseEntity<>(sellerRegistrationService.register(sellerRegistrationRequest), HttpStatus.CREATED);
+             return new ResponseEntity<>(sellerRegistrationService.register(sellerRegistrationRequest), HttpStatus.CREATED);
     }
 }
